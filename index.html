@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wadskog Design | Hållbart & Skräddarsytt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Helvetica+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-accent: #8c1832;      
+            --pink-dark: #a64b6d;           
+            --pink-main: #f2cad9;           
+            --pink-light: rgba(253, 246, 248, 0.96); 
+            --white: #FFFFFF;
+            --dark-text: #3c2a30;
+            --font-main: 'Helvetica Neue', Arial, sans-serif;
+            --font-headings: 'Kalam', cursive;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-image: url('bakgrund.jpg'); 
+            background-repeat: repeat;
+            background-attachment: fixed;
+            color: var(--dark-text);
+            font-family: var(--font-main);
+            line-height: 1.6;
+        }
+
+        /* En mycket mer kompakt och slimmad Header */
+        header {
+            background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('header.jpg');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 1.2rem 1rem; /* Drastiskt minskad padding för att spara plats */
+            border-bottom: 4px solid var(--primary-accent); /* Smalare, elegantare kant */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-image {
+            max-width: 90px; /* Nätt och skarp storlek för kvadratisk logga */
+            height: auto;
+            display: block;
+        }
+
+        /* Navigering & Hamburgarmeny */
+        nav {
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            position: relative;
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        nav a {
+            color: var(--pink-dark);
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-accent);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background-color: var(--primary-accent);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* Huvudcontainer */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background-color: var(--pink-light);
+            box-shadow: 0 0 30px rgba(0,0,0,0.05);
+        }
+
+        section {
+            margin-bottom: 5rem;
+        }
+
+        h2, h3 {
+            font-family: var(--font-headings);
+            color: var(--pink-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2.6rem;
+            border-bottom: 2px solid var(--primary-accent);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+        }
+
+        /* Om-sektion */
+        .about-box {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border-left: 6px solid var(--primary-accent);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
+        .alma-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--pink-main);
+            flex-shrink: 0;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        /* Galleri / Projekt */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            background-color: var(--white);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .image-placeholder {
+            background-color: var(--pink-main);
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pink-dark);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .gallery-desc {
+            padding: 1rem;
+            font-size: 0.95rem;
+        }
+
+        /* Prislista */
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            background-color: var(--white);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .price-table th, .price-table td {
+            padding: 1.1rem 1.5rem;
+            text-align: left;
+        }
+
+        .price-table th {
+            background-color: var(--primary-accent);
+            color: var(--white);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .price-table tr:nth-child(even) {
+            background-color: rgba(242, 202, 217, 0.15);
+        }
+
+        .price-table tr {
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .price-note {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            font-style: italic;
+            color: #666;
+        }
+
+        /* Instagram */
+        .instagram-section {
+            text-align: center;
+            background-color: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        .instagram-btn {
+            display: inline-block;
+            background-color: var(--primary-accent);
+            color: var(--white);
+            padding: 0.8rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            transition: transform 0.2s, background 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .instagram-btn:hover {
+            background-color: var(--pink-dark);
+            transform: scale(1.03);
+        }
+
+        /* Kontakt - UPPDATERAD MED BILD */
+        .contact-card {
+            /* Behåller accentfärgen som reserv om bilden inte laddas */
+            background-color: var(--primary-accent); 
+            
+            /* Lägger till bilden. Linjär-gradienten skapar en toning för bättre läsbarhet */
+            background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('kontakt-bg.jpg');
+            
+            background-size: cover; /* Ser till att bilden täcker hela rutan */
+            background-position: center; /* Centrerar bilden */
+            
+            color: var(--white);
+            padding: 3rem;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-card h3 {
+            color: var(--white);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card a {
+            color: var(--white);
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            font-size: 0.85rem;
+            color: #777;
+            border-top: 1px solid var(--pink-main);
+            background-color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 1rem 1rem; }
+            .logo-image { max-width: 80px; } /* Ännu lite mindre på mobilen för optimal smidighet */
+            
+            .hamburger { display: flex; }
+            .nav-container { justify-content: flex-end; }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                padding: 1rem 0;
+                box-shadow: 0 100px 15px rgba(0,0,0,0.1);
+                text-align: center;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            nav a {
+                margin: 0.8rem 0;
+                display: block;
+                font-size: 1rem;
+            }
+
+            .container { padding: 2rem 1rem; }
+            .about-box { flex-direction: column; text-align: center; }
+            .alma-image { width: 160px; height: 160px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="hem">
+        <img src="logo.png" alt="Wadskog Design" class="logo-image">
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#hem" onclick="closeMenu()">Hem</a>
+                <a href="#om" onclick="closeMenu()">Om mig</a>
+                <a href="#projekt" onclick="closeMenu()">Tidigare Projekt</a>
+                <a href="#priser" onclick="closeMenu()">Prislista</a>
+                <a href="#kontakt" onclick="closeMenu()">Kontakt</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <section id="om" class="about-box">
+            <img src="alma.jpg" alt="Alma, grundare av Wadskog Design" class="alma-image">
+            <div class="about-text">
+                <h2>Om Wadskog Design</h2>
+                <p>Hej! Det är jag som är <strong>Alma</strong>. Jag drivs av att skapa vackra, funktionella kläder och inredningsdetaljer med så lite klimatavtryck som möjligt. Därför arbetar jag främst med handplockade kvalitetstyger från <strong>second hand</strong>, eller genom att ge gamla plagg helt nytt liv genom <strong>redesign</strong>.</p>
+                <br>
+                <p>Oavsett om du vill sy om ett favoritplagg som tappat formen, måttbeställa nya gardiner till hemmet, eller lägga upp ett par kostymbyxor så hjälper jag dig att få det precis som du vill ha det.</p>
+            </div>
+        </section>
+
+        <section id="projekt">
+            <h2>Tidigare Projekt</h2>
+            <p>Här är ett urval av vad som har skapats i studion. Allt ifrån upcyklade kläder till unika accessoarer.</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="image-placeholder">[ Bild: Upcycled Klänning ]</div>
+                    <div class="gallery-desc">
+                        <strong>Redesign: Klänning</strong><br>
+                        Sydd av vintage påslakan i bomull.
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="image-placeholder">[ Bild: Gardiner ]</div>
+                    <div class="gallery-desc">
+                        <strong>Måttbeställda Gardiner</strong><br>
+                        Linnegardiner uppsydda till sekelskifteslägenhet.
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="image-placeholder">[ Bild: Accessoarer ]</div>
+                    <div class="gallery-desc">
+                        <strong>Smått & Gott</strong><br>
+                        Hårband och scrunchies sydda av spillbitar.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="priser">
+            <h2>Prislista & Tjänster</h2>
+            <p>Här hittar du cirkapriser för de vanligaste ändringarna och beställningarna. Kontakta mig alltid för ett exakt prisförslag för ditt projekt.</p>
+            
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>Tjänst</th>
+                        <th>Pris (från)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Lägga upp Jeans / Kostymbyxor</td>
+                        <td>250 kr</td>
+                    </tr>
+                    <tr>
+                        <td>Sy Gardiner (per längd)</td>
+                        <td>300 kr</td>
+                    </tr>
+                    <tr>
+                        <td>Mindre lagningar (t.ex. trasig söm/ficka)</td>
+                        <td>150 kr</td>
+                    </tr>
+                    <tr>
+                        <td>Byta dragkedja (exkl. material)</td>
+                        <td>350 kr</td>
+                    </tr>
+                    <tr>
+                        <td>Redesign / Anpassning av plagg</td>
+                        <td>Timpris / Offereras</td>
+                    </tr>
+                    <tr>
+                        <td>Måttsydda kläder efter mönster</td>
+                        <td>Offereras</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="price-note">* Priserna kan variera beroende på tygets komplexitet och tidsåtgång.</p>
+        </section>
+
+        <section class="instagram-section">
+            <h2>Följ resan på Instagram</h2>
+            <p>För att se de senaste projekten, processen bakom kulisserna och plaggen som är till salu just nu – spana in mitt flöde!</p>
+            <a href="https://www.instagram.com/wadskogdesign" target="_blank" class="instagram-btn">@wadskogdesign</a>
+        </section>
+
+        <section id="kontakt" class="contact-card">
+            <h3>Boka eller Frågor?</h3>
+            <p>Kontakta mig, <strong>Alma</strong>, så bollar vi dina idéer!</p>
+            <p style="margin-top: 1.5rem; font-weight: bold;">E-post:</p>
+            <p><a href="mailto:alma@wadskogdesign.se">alma@wadskogdesign.se</a></p>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Wadskog Design. Skapad med kärlek till återbruk.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('active');
+        }
+    </script>
+
+</body>
+</html>
